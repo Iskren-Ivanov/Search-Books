@@ -1,0 +1,9 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-image: url("./Images/ImgBackground/home-page-background-temp.jpg");
+  min-height: 100vh;
+  background-size: cover;
+  font-size: calc(10px + 2vmin);
+}

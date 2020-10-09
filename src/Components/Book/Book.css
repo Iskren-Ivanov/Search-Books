@@ -1,0 +1,38 @@
+.aTag {
+    color: black;
+    font-weight: bold;
+}
+
+.aTag:hover {
+    color: black;
+    font-weight: bold;
+}
+
+.bookContainer {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.bookImg {
+    text-align: left;
+    width: 12%;
+    display: block;
+}
+
+.bookInfo {
+    text-align: center;
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+    text-align: justify;
+    text-decoration: center;
+}
+
+.otherInfo {
+    text-align: left;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+}
