@@ -15,20 +15,23 @@ const Books = (props) => {
     let bookNumber = 1;
 
     useEffect(() => {
-        getBooks(props.location.searchState ? props.location.searchState : '');
+        getBooks(props.location.searchState ? props.location.searchState : localStorage.getItem('search'));
+
+        window.setTimeout(() => { localStorage.removeItem('search') }, 100000);
     }, [props.location.searchState]);
 
     const getBooks = async (search) => {
         let data = [];
-        const url = `https://cors-anywhere.herokuapp.com/https://www.googleapis.com/books/v1/volumes?q=${search}`;
-        if (search.trim() !== '') {
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}`;
+       
+        if (search && search.trim() !== '') {
+            localStorage.setItem('search', search);
             setLoading(true);
             await axios.get(url)
                 .then(response => {
                     response.data.items.forEach(d => data.push(d.volumeInfo));
                 })
                 .catch(error => {
-                    setLoading(false);
                     NotificationManager.warning('There was a problem loading', 'Error', 3000);
                 }).finally(() => {
                     setLoading(false);
@@ -37,12 +40,12 @@ const Books = (props) => {
         };
     };
 
-    const BookClick = (bookData) => {
+    const bookClick = (bookData) => {
         history.push({
             pathname: '/book',
             state: bookData
         });
-    }
+    };
 
     return loading ? <Loader />
         :
@@ -50,10 +53,10 @@ const Books = (props) => {
             <table className="table table-hover dark">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Rating</th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Rating</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,19 +64,17 @@ const Books = (props) => {
                         let authors;
                         b.authors?.length > 0 ? authors = b.authors.join(", ") : authors = b.authors
                         return (
-                            <tr onClick={() => BookClick(b)}>
-                                <th scope="row">{bookNumber++}</th>
-                                <td>{b.title}</td>
+                            <tr key={b.pageCount} onClick={() => bookClick(b)}>
+                                <td>{bookNumber++}</td>
                                 <td>{authors}</td>
                                 <td>{b.averageRating}</td>
+                                <td>{b.title}</td>
                             </tr>
-                        )
-                    }) : null
-                    }
+                        );
+                    }) : null}
                 </tbody>
             </table>
-        </div >
-        );
+        </div >);
 };
 
 export default Books;

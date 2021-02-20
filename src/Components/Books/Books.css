@@ -3,3 +3,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* .booksInfo {
+    text-align: justify;
+} */
+
+tr td:nth-child(even) {
+    text-align: justify;
+    cursor: pointer;
+}

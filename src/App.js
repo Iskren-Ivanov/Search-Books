@@ -8,15 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 import './App.css';
 
-const App = (props) => {
-
-  return (
-    <div className="App">
-      <NotificationContainer />
-      <NavigationBar />
-      <MyRoute />
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <NotificationContainer />
+    <NavigationBar />
+    <MyRoute />
+  </div>
+);
 
 export default App;

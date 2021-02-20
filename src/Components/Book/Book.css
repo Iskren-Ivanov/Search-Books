@@ -1,3 +1,8 @@
+.bookContainer {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .aTag {
     color: black;
     font-weight: bold;
@@ -6,11 +11,6 @@
 .aTag:hover {
     color: black;
     font-weight: bold;
-}
-
-.bookContainer {
-    width: 80%;
-    margin: 0 auto;
 }
 
 .bookImg {
