@@ -10,6 +10,9 @@ import './App.css';
 
 const App = () => (
   <div className="App">
+    <div className="background"> 
+
+    </div>
     <NotificationContainer />
     <NavigationBar />
     <MyRoute />
